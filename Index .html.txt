@@ -1,0 +1,138 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8" />
+  <title>HARRY TOPUP STORE</title>
+  <style>
+    body {
+      background-color: #0b0b0b;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .card {
+      background: linear-gradient(#360f0f, #570909);
+      border-radius: 15px;
+      border: 1px solid lime;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      margin: 30px auto;
+      box-sizing: border-box;
+    }
+    .card img {
+      width: 100px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 22px;
+      margin: 10px 0;
+    }
+    .subtitle {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    .package {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      background: #222;
+      padding: 10px;
+      border-radius: 10px;
+      align-items: center;
+    }
+    input[type=number] {
+      width: 50px;
+      font-size: 16px;
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+      text-align: center;
+      background-color: #333;
+      color: white;
+    }
+    #total {
+      font-size: 20px;
+      margin: 20px 0;
+      color: #00f5ff;
+      font-weight: bold;
+    }
+    button {
+      background-color: #00f5ff;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #00c2cc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/100" alt="Logo" />
+    <div class="title">NIM TOPUP STORE</div>
+    <div class="subtitle">Fast • Trusted • Secure</div>
+
+    <h3 style="color: #00f5ff;">💎 Select Your Package</h3>
+
+    <div class="package">
+      <div>Weekly Lite Membership<br><strong>120 LKR</strong></div>
+      <input type="number" min="0" value="0" data-price="120" />
+    </div>
+    <div class="package">
+      <div>Weekly Membership<br><strong>480 LKR</strong></div>
+      <input type="number" min="0" value="0" data-price="480" />
+    </div>
+    <div class="package">
+      <div>Monthly Membership<br><strong>2,300 LKR</strong></div>
+      <input type="number" min="0" value="0" data-price="2300" />
+      </div>
+    <div class="package">
+      <div>3 Day EVO Access<br><strong>185 LKR</strong></div>
+      <input type="number" min="0" value="0" data-price="185" />
+    </div>
+
+    <div id="total">Total: 0 LKR</div>
+    <button id="orderBtn">Place Order</button>
+  </div>
+
+<script>
+  const inputs = document.querySelectorAll('input[type="number"]');
+  const totalDisplay = document.getElementById('total');
+  const orderBtn = document.getElementById('orderBtn');
+
+  function calculateTotal() {
+    let total = 0;
+    inputs.forEach(input => {
+      const price = Number(input.dataset.price);
+      const qty = Number(input.value) || 0;
+      total += price * qty;
+    });
+    totalDisplay.textContent = `Total: ${total.toLocaleString()} LKR`;
+  }
+
+  inputs.forEach(input => {
+    input.addEventListener('input', calculateTotal);
+  });
+
+  orderBtn.addEventListener('click', () => {
+    alert(totalDisplay.textContent + "\nThank you for your order!");
+  });
+
+  calculateTotal(); // initial calculation
+</script>
+
+</body>
+</html>
+```
